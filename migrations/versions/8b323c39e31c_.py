@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2607bda1e202
+Revision ID: 8b323c39e31c
 Revises: 
-Create Date: 2021-04-08 02:02:38.389915
+Create Date: 2021-04-08 18:14:28.632094
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2607bda1e202'
+revision = '8b323c39e31c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,21 +21,19 @@ def upgrade():
     op.create_table('person',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=250), nullable=False),
-    sa.Column('last_name', sa.String(length=250), nullable=False),
+    sa.Column('last_name', sa.String(length=250), nullable=True),
     sa.Column('age', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('parent',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('son_id', sa.Integer(), nullable=True),
     sa.Column('father_id', sa.Integer(), nullable=True),
     sa.Column('mother_id', sa.Integer(), nullable=True),
-    sa.Column('name', sa.String(length=250), nullable=False),
-    sa.Column('last_name', sa.String(length=250), nullable=False),
-    sa.Column('relativity', sa.String(length=250), nullable=False),
+    sa.Column('own_id', sa.Integer(), nullable=True),
+    sa.Column('relativity', sa.String(length=250), nullable=True),
     sa.ForeignKeyConstraint(['father_id'], ['person.id'], ),
     sa.ForeignKeyConstraint(['mother_id'], ['person.id'], ),
-    sa.ForeignKeyConstraint(['son_id'], ['person.id'], ),
+    sa.ForeignKeyConstraint(['own_id'], ['person.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
