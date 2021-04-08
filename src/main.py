@@ -34,9 +34,9 @@ def sitemap():
 def get_person():    
     return jsonify(Person.getAllPerson()), 200
 
-@app.route('/allrelation', methods=['GET'])
-def get_parent():    
-    return jsonify(Parent.getAllParent()), 200
+# @app.route('/allrelation', methods=['GET'])
+# def get_parent():    
+#     return jsonify(Parent.getAllParent()), 200
 
 @app.route('/member/<int:id>', methods=['GET'])
 def get_member(id):
